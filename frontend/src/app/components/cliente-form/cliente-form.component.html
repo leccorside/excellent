@@ -1,0 +1,10 @@
+<div>
+    <h1>Cadastrar Cliente</h1>
+    <form (ngSubmit)="onSubmit()">
+      <input type="text" [(ngModel)]="cliente.cnpj" (blur)="buscarDadosCnpj()" placeholder="CNPJ" name="cnpj" required>
+      <input type="text" [(ngModel)]="cliente.razaoSocial" placeholder="Razão Social" name="razaoSocial" required>
+      <input type="email" [(ngModel)]="cliente.email" placeholder="E-mail" name="email" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+  </div>
+  

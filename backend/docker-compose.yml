@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: backend-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=3306
+      - DB_USERNAME=root
+      - DB_PASSWORD=
+      - DB_DATABASE=nest_project
+    depends_on:
+      - db
+
+  db:
+    container_name: backend-db
+    image: mysql:8.0
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: 
+      MYSQL_DATABASE: nest_project
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:

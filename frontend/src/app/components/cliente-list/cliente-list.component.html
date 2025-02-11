@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Lista de Clientes</h2>
+  <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#cadastroClienteModal">Adicionar Cliente</button>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Razão Social</th>
+          <th>CNPJ</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.razao_social }}</td>
+          <td>{{ cliente.cnpj }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>
+            <button class="btn btn-danger btn-sm" (click)="deletarCliente(cliente.id)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal de Cadastro de Cliente -->
+  <div class="modal fade" id="cadastroClienteModal" tabindex="-1" aria-labelledby="cadastroClienteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cadastroClienteModalLabel">Cadastro de Cliente</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="cnpj" class="form-label">CNPJ</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="cnpj" [(ngModel)]="cliente.cnpj" name="cnpj">
+                <button class="btn btn-secondary" type="button" (click)="consultarCNPJ()">Consultar</button>
+              </div>
+              <div *ngIf="cnpjInvalido" class="text-danger mt-2">CNPJ Inválido ou Não Encontrado</div> <!-- Mensagem de erro em vermelho -->
+            </div>
+            <div *ngIf="loading" class="text-center">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+            <div *ngIf="!loading">
+              <div class="mb-3">
+                <label for="razao_social" class="form-label">Razão Social</label>
+                <input type="text" class="form-control" id="razao_social" [(ngModel)]="cliente.razao_social" name="razao_social" readonly>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" [(ngModel)]="cliente.email" name="email">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  
+
+
+</div>
+
+
+
+
+
+
+
+

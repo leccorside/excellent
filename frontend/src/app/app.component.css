@@ -1,0 +1,17 @@
+/* Estilos para o componente principal da aplicação */
+:host {
+    display: block;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2em;
+  }
+  
+  p {
+    color: #666;
+    font-size: 1.2em;
+  }
+  
